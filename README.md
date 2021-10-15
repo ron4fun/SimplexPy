@@ -33,9 +33,9 @@ def main():
 
     """
     {'w4': Fraction(0, 1), 'w3': Fraction(3, 1), 'w2': Fraction(0, 1), 
-	'w1': Fraction(0, 1), 'x2': Fraction(12, 1), 'x1': Fraction(3, 1),
-	'Pmax': Fraction(33, 1)}
-"""
+    'w1': Fraction(0, 1), 'x2': Fraction(12, 1), 'x1': Fraction(3, 1),
+    'Pmax': Fraction(33, 1)}
+    """
 ```
 
 
