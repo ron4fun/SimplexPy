@@ -22,6 +22,14 @@ Copyright (c) 2021 Mbadiwe Nnaemeka Ronald ron2tele@gmail.com
 import unittest
 from SimplexPy import *
 
+"""
+Test vectors were gotten from -
+
+ADVANCED ENGINEERING MATHEMATICS (K.A STRAUD) 4th Edition
+Programme 23 - Optimization and linear programming 
+Page 940
+
+"""
 class SimplexPyTests(unittest.TestCase):
 
     def test_2ProblemVariables_and_2SlackVariables(self):
@@ -98,7 +106,7 @@ class SimplexPyTests(unittest.TestCase):
         ]
 
         result = SimplexPy.SolveEq(problem, 3)
-        print result
+        
         #
         self.assertEqual(0, int(result['x1']))
         self.assertEqual(4, int(result['x2']))
