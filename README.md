@@ -2,7 +2,16 @@
 
 
 
-`SimplexPy` is a compact python library that automatically solves `Linear Programming Equations` i.e Maximization problems, easily and quickly while giving you neat results. To run unittest check in the test folder.
+`SimplexPy` is a compact python library that automatically solves `Linear Programming Equations` i.e Maximization problems, easily and quickly while giving you neat results. 
+
+
+Unittest
+---------
+	Test vectors were gotten from -
+
+	ADVANCED ENGINEERING MATHEMATICS (K.A STRAUD) 4th Edition
+	Programme 23 - Optimization and linear programming 
+	Page 940
 
 
 
@@ -25,7 +34,7 @@ def main():
     problem = [
         ['w1',2,1,1,0,0,18],
         ['w2',2,3,0,1,0,42],
-	['w3',3,1,0,0,1,24],
+        ['w3',3,1,0,0,1,24],
         ['P',-3,-2,0,0,0,0]
     ]
 
