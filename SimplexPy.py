@@ -107,6 +107,16 @@ class SimplexPy(object):
         return iterate
 
     @staticmethod
+    def _HasArtificialVariable(arr, no_variables):
+        pos = no_variables
+        for row in arr:
+            if row[0] != 'P':
+                for i in range(1, len(row) - 1): # without the constant `b`
+                    if row[i] < 0:
+                        return True
+        return False
+        
+    @staticmethod
     def _ResolveResult(row, no_variables):
         if row[0] == 'P':
             return 'Pmax', row[-1]
@@ -126,16 +136,20 @@ class SimplexPy(object):
 
     @staticmethod
     def SolveEq(arr, no_variables):
+
+        artificial_var = SimplexPy._HasArtificialVariable(arr, no_variables)
+        
         arr = SimplexPy._SimplexEngine(arr)
         
         while SimplexPy._ShouldIterate(arr):
             arr = SimplexPy._SimplexEngine(arr)
-        
-        optimal, col = SimplexPy._IsOptimal(arr, no_variables)
-        while not optimal:
-            arr = SimplexPy._SimplexEngine(arr, optimal, col)
+
+        if artificial_var:
             optimal, col = SimplexPy._IsOptimal(arr, no_variables)
-            
+            while not optimal:
+                arr = SimplexPy._SimplexEngine(arr, optimal, col)
+                optimal, col = SimplexPy._IsOptimal(arr, no_variables)
+
         ans = {}
         for row in arr:
             res = SimplexPy._ResolveResult(row, no_variables)
@@ -158,11 +172,14 @@ class SimplexPy(object):
         return ans
 
 if __name__ ==  '__main__':
+    # problem setup
     problem = [
         ['w1',2,1,1,0,0,18],
         ['w2',2,3,0,1,0,42],
-	['w3',3,1,0,0,1,24],
+        ['w3',3,1,0,0,1,24],
         ['P',-3,-2,0,0,0,0]
     ]
-    result = SimplexPy.SolveEq(problem, 2)
-    pass
+
+    result = SimplexPy.SolveEq(problem, 2) # where 2 is the total number of variables
+
+    print(result)
